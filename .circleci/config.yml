@@ -17,14 +17,13 @@ jobs:
     steps:
       - checkout
       - aws-elastic-beanstalk/setup
-      - run: cd dist && eb-deploy
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       # - node/test
       - node/run:
-          yarn-run: yarn run tsc
-      - deployment-job:
+          yarn-run: yarn run tsc && cd dist && eb-deploy
           requires:
-            - node/run
+            - deployment-job
+      - deployment-job
