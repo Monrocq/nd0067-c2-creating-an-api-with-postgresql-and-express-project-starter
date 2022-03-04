@@ -5,18 +5,21 @@ dotenv.config();
 
 const {
   host,
+  host_prod,
   database,
   database_test,
   user,
   password,
-  ENV
+  password_prod,
+  ENV,
+  DB
 } = process.env
 
 const client = new Pool({
-  host,
+  host: DB === "external" ? host_prod : host,
   database : ENV === "test" ? database_test : database,
   user,
-  password
+  password: DB === "external" ? password_prod : password
 })
 
 export default client

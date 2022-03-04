@@ -6,14 +6,15 @@ import userRoutes from './handlers/users';
 import orderRoutes from './handlers/orders';
 
 const app: express.Application = express()
-const address: string = "localhost:3000"
+const address: string = "localhost:8080"
+var port = process.env.PORT || 8080;
 
 const corsOptions = {
     origin: 'http://localhost', //White list
     optionsSuccessStatus: 200
 }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json())
 
 app.get('/', function (req: Request, res: Response) {
@@ -28,8 +29,8 @@ productRoutes(app)
 userRoutes(app)
 orderRoutes(app)
 
-app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
+app.listen(port, function () {
+    console.log(`starting app on port: ${port}`)
 })
 
 export default app;

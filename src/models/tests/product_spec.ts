@@ -7,7 +7,8 @@ describe("Product Model", () => {
     id: 1,
     name: "Produit de test",
     price: '$10.55',
-    category: null
+    category: null,
+    url: "https://cdn.pixabay.com/photo/2017/11/30/08/56/ice-cream-2987955_1280.jpg"
   }
 
   beforeAll(async () => {

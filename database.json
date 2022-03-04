@@ -12,5 +12,27 @@
     "database": "store_test",
     "user": "postgres",
     "password": "password"
+  },
+  "prod": {
+    "driver": "pg",
+    "host": {
+      "ENV": "host_prod"
+    },
+    "database": "store",
+    "user": "postgres",
+    "password": {
+      "ENV": "password_prod"
+    }
+  },
+  "prod_test": {
+    "driver": "pg",
+    "host": {
+      "ENV": "host_prod"
+    },
+    "database": "store_test",
+    "user": "postgres",
+    "password": {
+      "ENV": "password_prod"
+    }
   }
 }

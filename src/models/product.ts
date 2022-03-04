@@ -4,6 +4,7 @@ export type Product = {
   id: Number;
   name: string;
   price: string;
+  url: string;
 }
 
 export class ProductStore {
@@ -15,6 +16,7 @@ export class ProductStore {
       conn.release();
       return result.rows;
     } catch(err) {
+      console.log(err)
       throw new Error(`Cannot get products : ${err}`)
     }
   }
@@ -34,8 +36,8 @@ export class ProductStore {
   async create(p: Product): Promise<Product> {
     try {
       const conn = await Client.connect();
-      const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *';
-      const result = await conn.query(sql, [p.name, p.price]);
+      const sql = 'INSERT INTO products (name, price, url) VALUES($1, $2, $3) RETURNING *';
+      const result = await conn.query(sql, [p.name, p.price, p.url]);
       const product = result.rows[0]
       conn.release();
       return product;

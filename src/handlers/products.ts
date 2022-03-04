@@ -33,7 +33,8 @@ const create = async (req: Request, res: Response) => {
         const product: Product = {
             id: 0,
             name: req.body.name,
-            price: req.body.price
+            price: req.body.price,
+            url: req.body.url
         }
         const newProduct = await store.create(product)
         res.json(newProduct)
