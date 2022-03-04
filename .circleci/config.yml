@@ -16,21 +16,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: 
-          name: build
-          command: |
-            yarn add tsc && yarn run tsc
       - aws-elastic-beanstalk/setup
       - run: cd dist && eb-deploy
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
+      # - node/test
       - node/run:
-            yarn-run: yarn global add tsc
-      - node/test:
-          requires:
-            - node/run
+          yarn-run: yarn run tsc
       - deployment-job:
           requires:
-            - node/test
+            - node/run
