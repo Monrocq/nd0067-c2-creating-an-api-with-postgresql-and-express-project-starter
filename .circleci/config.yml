@@ -28,7 +28,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - node/run:
-            yarn-run: yarn add tsc -g
+            yarn-run: yarn global add tsc
       - node/test:
           requires:
             - node/run
