@@ -15,10 +15,7 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - run: 
-          name: build
-          command: |
-            tsc
+      - run: tsc
       - aws-elastic-beanstalk/setup
       - run: cd dist && eb-deploy
 workflows:
