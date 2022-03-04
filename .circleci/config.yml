@@ -20,20 +20,18 @@ jobs:
       - run: 
           name: build
           command: |
-            sudo npm i -g tsc && npm run tsc
+            npm run tsc
       - aws-elastic-beanstalk/setup
       - run: cd dist && eb-deploy
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
+      - node/run:
+            yarn-run: yarn add tsc -g
       - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
-          version: '16.10'
-          # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
+          requires:
+            - node/run
       - deployment-job:
           requires:
             - node/test
