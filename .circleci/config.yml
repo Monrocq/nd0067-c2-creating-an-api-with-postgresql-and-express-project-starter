@@ -20,7 +20,7 @@ jobs:
       - run: 
           name: build
           command: |
-            npm run tsc
+            sudo npm i -g tsc && npm run tsc
       - aws-elastic-beanstalk/setup
       - run: cd dist && eb-deploy
 workflows:
