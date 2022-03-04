@@ -16,11 +16,13 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - node/install
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
       - run: 
           name: build
           command: |
-            npm run tsc
+            npm i tsc && npm run tsc
       - aws-elastic-beanstalk/setup
       - run: cd dist && eb-deploy
 workflows:
