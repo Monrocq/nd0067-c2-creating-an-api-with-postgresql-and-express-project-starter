@@ -26,8 +26,8 @@ jobs:
           command: yarn run tsc
       - eb/setup
       - run:
-          name: setenv
-          command: eb init --region us-east-1 --platform node.js && cd dist && eb deploy
+          name: deploiment
+          command: eb init --region us-east-1 --platform node.js && yarn run deploy && cd dist && eb deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
