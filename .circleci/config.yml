@@ -6,7 +6,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.7
   aws-cli: circleci/aws-cli@2.0.6
-  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
+  eb: circleci/aws-elastic-beanstalk@2.0.1
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -20,11 +20,11 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: yarn
-      - aws-elastic-beanstalk/setup
+      - aws-cli/install
       - run:
           name: build
-          command: yarn run tsc && yarn run deploy
-      - aws-cli/install
+          command: yarn run tsc
+      - eb/setup
       - run:
           name: setenv
           command: yarn run deploy
