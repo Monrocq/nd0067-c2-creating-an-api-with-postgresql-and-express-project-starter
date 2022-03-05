@@ -23,7 +23,7 @@ workflows:
     jobs:
       - node/test
       - node/run:
-          yarn-run: yarn run tsc && yarn run deploy && cd dist && eb-deploy
+          npm-run: npm run tsc && npm run deploy && cd dist && eb-deploy
           requires:
             - deployment-job
       - deployment-job:
