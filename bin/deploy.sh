@@ -1,3 +1,4 @@
+eb use Store-env
 eb setenv BCRYPT_PASSWORD=$BCRYPT_PASSWORD
 eb setenv DB=$DB
 eb setenv SALT_ROUND=$SALT_ROUND
