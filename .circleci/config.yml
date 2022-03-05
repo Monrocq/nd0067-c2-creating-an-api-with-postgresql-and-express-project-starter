@@ -21,10 +21,10 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: yarn
       - aws-cli/install
+      - eb/setup
       - run:
           name: build
           command: yarn run tsc
-      - eb/setup
       - run:
           name: deploiment
           command: eb init store --region us-east-1 --platform node.js && yarn run deploy && eb deploy
