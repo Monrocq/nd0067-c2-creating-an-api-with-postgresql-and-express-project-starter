@@ -27,7 +27,7 @@ jobs:
       - eb/setup
       - run:
           name: setenv
-          command: eb init --region us-east-1 yarn run deploy
+          command: eb init --region us-east-1 --platform node.js yarn run deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
