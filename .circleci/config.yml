@@ -24,10 +24,10 @@ jobs:
       - eb/setup
       - run:
           name: build
-          command: yarn run tsc && ls
+          command: yarn run tsc
       - run:
           name: deploiment
-          command: eb init store --region us-east-1 --platform node.js && yarn run deploy && eb deploy && ls
+          command: eb init store --region us-east-1 --platform node.js && yarn run deploy && eb deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
