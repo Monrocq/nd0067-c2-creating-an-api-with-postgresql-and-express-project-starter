@@ -18,11 +18,11 @@ jobs:
       - checkout
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
+          pkg-manager: yarn
       - aws-elastic-beanstalk/setup
       - run:
           name: build
-          command: npm run tsc && npm run deploy
+          command: yarn run tsc && yarn run deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
