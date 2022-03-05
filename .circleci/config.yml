@@ -16,14 +16,21 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - node/install-packages:
+          # If you are using yarn, change the line below from "npm" to "yarn"
+          pkg-manager: npm
       - aws-elastic-beanstalk/setup
+      - run:
+          name: build
+          command: npm run tsc && npm run deploy
+
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - node/test
       - node/run:
-          npm-run: npm run tsc && npm run deploy && cd dist && eb-deploy
+          npm-run: cd dist && eb-deploy
           requires:
             - deployment-job
       - deployment-job:
